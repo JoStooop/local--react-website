@@ -1,0 +1,17 @@
+import React from 'react';
+import {useLocation, Navigate} from "react-router-dom";
+
+ // в роли "children" будет выступать страница
+
+const RequireAuth = ({children}) => {
+    const location = useLocation()
+    const auth = false
+
+    if (!auth) {
+        return <Navigate to='/login' state={{from: location}}/>
+    }
+
+    return children
+};
+
+export default RequireAuth;
