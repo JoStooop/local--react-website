@@ -1,5 +1,5 @@
-import React, {useEffect, useState} from 'react';
-import {Link, useParams,useNavigate,  useLocation} from "react-router-dom";
+import React, { useEffect, useState } from 'react';
+import { Link, useParams, useNavigate, useLocation } from "react-router-dom";
 
 // useParams - он возвращает параметры
 
@@ -10,22 +10,27 @@ import {Link, useParams,useNavigate,  useLocation} from "react-router-dom";
 
 
 const SinglePage = () => {
-  let location = useLocation();
-  console.log(location.pathname)
-
-  console.log(useParams())
+  const { id } = useParams()
+  console.log(id)
 
 
-  const {id} = useParams()
   const navigate = useNavigate()
 
-  const [post, setPost] = useState(null)
+  const [post, setPost] = useState([])
 
   useEffect(() => {
     fetch(`https://jsonplaceholder.typicode.com/posts/${id}`)
       .then(res => res.json())
       .then(data => setPost(data))
   }, [id])
+
+  const getInvoice = (number) => {
+    if(!post.length) return
+
+    return post.find(item => item.id === number)
+  }
+
+  const invoice = getInvoice(id)
 
 
   const goBack = () => navigate(-1) // на 1 страницу назад и тд.. Какая цифра столько страниц и возвращаемся назад
@@ -38,6 +43,9 @@ const SinglePage = () => {
           <button onClick={goBack}>Go back</button>
           <h1>{post.title}</h1>
           <p>{post.body}</p>
+          <div>
+            {!!post.length && invoice.title}
+          </div>
           <Link to={`/posts/${id}/edit`}>Edit this post</Link>
         </>
       )
@@ -48,3 +56,5 @@ const SinglePage = () => {
 };
 
 export default SinglePage;
+
+

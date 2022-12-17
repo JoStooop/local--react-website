@@ -9,7 +9,7 @@ const About = () => {
     event.preventDefault();
 
     async function submitForm(target) {
-      
+
     }
 
     await submitForm(event.target);
@@ -27,8 +27,9 @@ const About = () => {
       <form onSubmit={handleSubmit}>
         <input type="text"/>
       </form>
-      
+
       <ul>
+        <Link to='/'>Click</Link> | {' '}
         <li><Link to="contacts">Our Contacts</Link></li>
         <li><Link to="team">Our Team</Link></li>
       </ul>
@@ -43,3 +44,4 @@ const About = () => {
 };
 
 export default About;
+

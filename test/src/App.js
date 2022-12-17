@@ -20,7 +20,7 @@ function App() {
           <Route path="posts/:id" element={<SinglePage/>}/>
           <Route path="posts/:id/edit" element={<Editpost/>}/>
           <Route path="posts/new" element={<Createpost/>}/>
-          <Route path="*" element={<NotFoundPage/>}/> // Если ничего не найдено, отобразится этот блок
+          <Route path="*" element={<NotFoundPage/>}/>
         </Route>
       </Routes>
     </>
